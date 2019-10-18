@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Desafio BITLAB</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tvDescripcion">Nos encanta que quieras aplicar a nuestras becas, pero antes de todo necesitamos conocerte más.</string>
+    <string name="tvNombre">Nombre completo:</string>
+    <string name="etNombre">Nombre</string>
+    <string name="tvCorreoElectronico">Correo electronico:</string>
+    <string name="etCorreoElectronico">ejemplo@website.com</string>
+    <string name="tvNumeroTelefonico">Numero telefonico</string>
+    <string name="etNumeroTelefonico">123456789</string>
+    <string name="tvInformacion">Como te enteraste de BITLAB?</string>
+    <string name="editTextInformacion">Cuentanos!</string>
+    <string name="btnEnviar">Enviar</string>
+</resources>
