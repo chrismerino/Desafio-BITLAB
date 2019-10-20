@@ -4,9 +4,14 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorBackground">#5B0DAF</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorButtonPrimaryWhite">#F9F9F9</color>
 
-    <color name="colorBackgroundEditText">#E6FFFFFF</color>
+<!--    Colores primarios-->
+    <color name="colorPurpuraBITLAB">#5B0DAF</color>
+    <color name="colorBlancoBITLAB">#F9F9F9</color>
+
+<!--    Colores para componentes UI-->
+    <color name="colorUIPrimaryWhite">#F9F9F9</color>
+    <color name="colorEditTextBackground">#1AF9F9F9</color>
+    <color name="colorEditTextStroke">#1AF9F9F9</color>
 </resources>

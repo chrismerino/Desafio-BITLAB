@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_view_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/colorPurpuraBITLAB"
     tools:context=".FormViewFragment">
 
 
@@ -12,7 +13,7 @@
         android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="23dp"
         android:src="@drawable/image_bitlab_logo"
         app:layout_constraintBottom_toTopOf="@+id/tvDescripcion"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,34 +41,26 @@
     <EditText
         android:id="@+id/etNombre"
         style="@style/AppTheme.styleEditText"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/etNombre"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/tvCorreoElectronico"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
-    <TextView
-        android:id="@+id/tvCorreoElectronico"
-        style="@style/AppTheme.styleTextView"
-        android:hint="@string/tvCorreoElectronico"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/etCorreoElectronico"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
-        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
-
     <EditText
         android:id="@+id/etCorreoElectronico"
         style="@style/AppTheme.styleEditText"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/etCorreoElectronico"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/tvNumeroTelefonico"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tvCorreoElectronico" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/tvNumeroTelefonico"
@@ -81,6 +74,7 @@
     <EditText
         android:id="@+id/etNumeroTelefonico"
         style="@style/AppTheme.styleEditText"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/etNumeroTelefonico"
         android:inputType="phone"
@@ -96,7 +90,8 @@
         app:layout_constraintBottom_toTopOf="@+id/etInformacion"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/etNumeroTelefonico" />
+        app:layout_constraintTop_toBottomOf="@+id/etNumeroTelefonico"
+        app:layout_constraintVertical_bias="0.49" />
 
     <EditText
         android:id="@+id/etInformacion"
@@ -104,6 +99,8 @@
         android:ems="10"
         android:hint="@string/editTextInformacion"
         android:inputType="textPersonName"
+        android:lines="2"
+        android:maxLines="2"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalBottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
@@ -133,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.33" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalLeft"
@@ -148,6 +145,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/AppTheme.styleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvCorreoElectronico"
+        app:layout_constraintBottom_toTopOf="@+id/etCorreoElectronico"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
