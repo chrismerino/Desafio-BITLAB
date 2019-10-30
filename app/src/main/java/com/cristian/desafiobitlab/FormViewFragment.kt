@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import java.lang.ClassCastException
 
@@ -16,7 +14,7 @@ import java.lang.ClassCastException
 class FormViewFragment : Fragment() {
 
     var boton: Button? = null
-    var listener: NombreListener? = null
+    var listener: Listener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,34 +24,39 @@ class FormViewFragment : Fragment() {
 
 
         boton = view.findViewById(R.id.bntEnviar)
-        boton?.setOnClickListener{
+        boton?.setOnClickListener{ view ->
             Toast.makeText(view.context, "Hey", Toast.LENGTH_SHORT).show()
+            listener?.callMyFragment()
 
-
-//            val nombreActual = nombreFromEditText?.text.toString()
-//            listener?.obtenerNombre(nombreActual)
         }
 
         return view
 
     }
 
-    interface NombreListener{
+    interface Listener{
 
-        fun obtenerNombre(nombre: String){
+        fun callMyFragment()
 
-        }
     }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
         try {
-            listener = context as NombreListener
+            listener = context as Listener
         } catch (e: ClassCastException){
             throw ClassCastException(context.toString() + "debes implementar la interface")
         }
 
+    }
+
+    companion object {
+
+        fun newInstance() : FormViewFragment {
+            val fragment = FormViewFragment()
+            return fragment
+        }
     }
 
 }

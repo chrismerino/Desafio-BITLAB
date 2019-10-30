@@ -2,47 +2,36 @@ package com.cristian.desafiobitlab
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 
 
-class MainActivity : AppCompatActivity(), FormViewFragment.NombreListener {
+class MainActivity : AppCompatActivity(), FormViewFragment.Listener, SuccessViewFragment.ListenerFragment2 {
 
-    var mostrarNombre: TextView? = null
-    var buttonEnviar: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // mostrarNombre = findViewById(R.id.)
 
-        val fragmentManager = supportFragmentManager
 
-        // Mostrando el primer fragment
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        val firstFragment = FormViewFragment()
+        val mostrarFragment = FormViewFragment()
 
-        fragmentTransaction.add(R.id.root_layout, firstFragment)
-        fragmentTransaction.commit()
+        val builder = supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_main_activity, mostrarFragment)
+            .addToBackStack(null)
+            builder.commit()
+    }
 
-        buttonEnviar = findViewById(R.id.bntEnviar)
-        buttonEnviar?.setOnClickListener{
 
-            val fragmentTransaction = fragmentManager.beginTransaction()
 
-            val newFragment = SuccessViewFragment()
-            fragmentTransaction.replace(R.id.root_layout, newFragment)
-
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-
-        }
+    override fun callMyFragment() {
+        val showMyNewFragment = SuccessViewFragment()
+        val builder = supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_main_activity, showMyNewFragment)
+            .addToBackStack(null)
+            builder.commit()
 
     }
 
-    override fun obtenerNombre(nombre: String) {
-        super.obtenerNombre(nombre)
-        mostrarNombre?.text = nombre
-    }
 }
