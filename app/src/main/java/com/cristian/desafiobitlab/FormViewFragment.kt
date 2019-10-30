@@ -1,42 +1,60 @@
 package com.cristian.desafiobitlab
 
-import android.app.Activity
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_form_view.view.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import java.lang.ClassCastException
 
 
 class FormViewFragment : Fragment() {
 
-    val TAG = "FormViewFragment"
-
+    var nombreFromEditText: TextView? =null
+    var boton: Button? = null
+    var listener: NombreListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d(TAG, "onCreateView")
         // Inflate the layout for this fragment
 
-        val view: View = inflater!!.inflate(R.layout.fragment_form_view, container, false)
+        val view = inflater.inflate(R.layout.fragment_form_view, container, false)
 
-        view.bntEnviar.setOnClickListener{ view ->
-            Log.d("btnEnviar", "Selected")
+        nombreFromEditText = view.findViewById(R.id.etNombre)
+
+
+        boton = view.findViewById(R.id.bntEnviar)
+        boton?.setOnClickListener{
+            Toast.makeText(view.context, "Hey", Toast.LENGTH_SHORT).show()
+            val nombreActual = nombreFromEditText?.text.toString()
+            listener?.obtenerNombre(nombreActual)
         }
+
         return view
 
-        //return inflater.inflate(R.layout.fragment_form_view, container, false)
     }
 
-    private fun callFragment() {
+    interface NombreListener{
+
+        fun obtenerNombre(nombre: String){
+
+        }
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
 
+        try {
+            listener = context as NombreListener
+        } catch (e: ClassCastException){
+            throw ClassCastException(context.toString() + "debes implementar la interface")
+        }
 
-
+    }
 
 }
