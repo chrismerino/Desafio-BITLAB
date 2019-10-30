@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), FormViewFragment.Listener, SuccessView
         val builder = supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container_main_activity, mostrarFragment)
-            .addToBackStack(null)
+            // .addToBackStack(null)
             builder.commit()
     }
 
