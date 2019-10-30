@@ -15,7 +15,6 @@ import java.lang.ClassCastException
 
 class FormViewFragment : Fragment() {
 
-    var nombreFromEditText: TextView? =null
     var boton: Button? = null
     var listener: NombreListener? = null
 
@@ -25,14 +24,14 @@ class FormViewFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_form_view, container, false)
 
-        nombreFromEditText = view.findViewById(R.id.etNombre)
-
 
         boton = view.findViewById(R.id.bntEnviar)
         boton?.setOnClickListener{
             Toast.makeText(view.context, "Hey", Toast.LENGTH_SHORT).show()
-            val nombreActual = nombreFromEditText?.text.toString()
-            listener?.obtenerNombre(nombreActual)
+
+
+//            val nombreActual = nombreFromEditText?.text.toString()
+//            listener?.obtenerNombre(nombreActual)
         }
 
         return view
