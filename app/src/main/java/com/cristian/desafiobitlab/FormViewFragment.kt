@@ -7,13 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_form_view.*
 import java.lang.ClassCastException
 
 
 class FormViewFragment : Fragment() {
 
-    var boton: Button? = null
+    // Declarando elementos de UI
+    var botonEnviar: Button? = null
+
+
+
     var listener: Listener? = null
 
     override fun onCreateView(
@@ -23,10 +29,22 @@ class FormViewFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_form_view, container, false)
 
 
-        boton = view.findViewById(R.id.bntEnviar)
-        boton?.setOnClickListener{ view ->
-            Toast.makeText(view.context, "Hey", Toast.LENGTH_SHORT).show()
-            listener?.callMyFragment()
+        botonEnviar = view.findViewById(R.id.bntEnviar)
+
+        botonEnviar?.setOnClickListener{ view ->
+
+
+            if (etNombre.text.isEmpty()
+                or (etCorreoElectronico.text.isEmpty())
+                        or (etNumeroTelefonico.text.isEmpty())){
+                Toast.makeText(view.context, "Necesita completar la informacion", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(view.context, "Funciono! :v", Toast.LENGTH_SHORT).show()
+                listener?.callMyFragment()
+            }
+
+
+
 
         }
 
