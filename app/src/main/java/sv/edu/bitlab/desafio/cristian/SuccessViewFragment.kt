@@ -1,10 +1,16 @@
-package com.cristian.desafiobitlab
+/*
+ * Copyright (c) 2019.  Cristian Merino, All rights reserved.
+ * https://linkedin.com/chrismerino
+ */
+
+package sv.edu.bitlab.desafio.cristian
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import sv.edu.bitlab.desafio.cristian.R
 
 
 class SuccessViewFragment : Fragment() {

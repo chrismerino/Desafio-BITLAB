@@ -14,4 +14,12 @@
     <string name="editTextInformacion">Cuentanos!</string>
     <string name="btnEnviar">Enviar</string>
     <string name="tv_descripcion_fg_success">Tus datos han sido enviados con éxito</string>
+
+
+    <string-array name="spinner_bitlab_information_formview">
+        <item>Por redes sociales</item>
+        <item>Un amigo me sugirio</item>
+        <item>Otro</item>
+    </string-array>
+
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPurpuraBITLAB"
-    tools:context=".FormViewFragment">
+    tools:context="sv.edu.bitlab.desafio.cristian.FormViewFragment">
 
 
     <ImageView
@@ -78,6 +78,7 @@
         android:ems="10"
         android:hint="@string/etNumeroTelefonico"
         android:inputType="phone"
+        android:maxLength="8"
         app:layout_constraintBottom_toTopOf="@+id/tvInformacion"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
@@ -87,20 +88,16 @@
         android:id="@+id/tvInformacion"
         style="@style/AppTheme.styleTextView"
         android:text="@string/tvInformacion"
-        app:layout_constraintBottom_toTopOf="@+id/etInformacion"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_Informacion"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/etNumeroTelefonico"
         app:layout_constraintVertical_bias="0.49" />
 
-    <EditText
-        android:id="@+id/etInformacion"
-        style="@style/AppTheme.styleEditText"
-        android:ems="10"
-        android:hint="@string/editTextInformacion"
-        android:inputType="textPersonName"
-        android:lines="2"
-        android:maxLines="2"
+    <Spinner
+        android:id="@+id/spinner_Informacion"
+        style="@style/AppTheme.styleSpinner"
+        android:entries="@array/spinner_bitlab_information_formview"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalBottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"

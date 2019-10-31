@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorF9">#F9F9F9</color>
 
 <!--    Colores primarios-->
     <color name="colorPurpuraBITLAB">#5B0DAF</color>
@@ -14,4 +15,5 @@
     <color name="colorUIPrimaryWhite">#F9F9F9</color>
     <color name="colorEditTextBackground">#1AF9F9F9</color>
     <color name="colorEditTextStroke">#1AF9F9F9</color>
+    <color name="colorEnButton">#5B0DAF</color>
 </resources>

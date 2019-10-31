@@ -1,4 +1,9 @@
-package com.cristian.desafiobitlab
+/*
+ * Copyright (c) 2019.  Cristian Merino, All rights reserved.
+ * https://linkedin.com/chrismerino
+ */
+
+package sv.edu.bitlab.desafio.cristian
 
 import android.content.Context
 import android.os.Bundle
@@ -7,8 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import sv.edu.bitlab.desafio.cristian.R
 import kotlinx.android.synthetic.main.fragment_form_view.*
 import java.lang.ClassCastException
 
@@ -35,11 +40,10 @@ class FormViewFragment : Fragment() {
 
 
             if (etNombre.text.isEmpty()
-                or (etCorreoElectronico.text.isEmpty())
-                        or (etNumeroTelefonico.text.isEmpty())){
+                or (etCorreoElectronico.text.isEmpty())){
                 Toast.makeText(view.context, "Necesita completar la informacion", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(view.context, "Funciono! :v", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "La informacion ha sido enviada!", Toast.LENGTH_SHORT).show()
                 listener?.callMyFragment()
             }
 

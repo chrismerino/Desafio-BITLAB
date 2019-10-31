@@ -1,4 +1,4 @@
-package com.cristian.desafiobitlab
+package sv.cristian.desafiobitlab
 
 import org.junit.Test
 

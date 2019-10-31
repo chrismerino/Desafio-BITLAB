@@ -10,5 +10,5 @@
         android:width="2dp"
         android:color="@color/colorEditTextStroke"/>
 
-    <corners android:radius="8dp" />
+    <corners android:radius="15dp" />
 </shape>

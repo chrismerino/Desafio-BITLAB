@@ -1,4 +1,4 @@
-package com.cristian.desafiobitlab
+package sv.cristian.desafiobitlab
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,10 +1,17 @@
-package com.cristian.desafiobitlab
+/*
+ * Copyright (c) 2019.  Cristian Merino, All rights reserved.
+ * https://linkedin.com/chrismerino
+ */
+
+package sv.edu.bitlab.desafio.cristian
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import sv.edu.bitlab.desafio.cristian.R
 
 
-class MainActivity : AppCompatActivity(), FormViewFragment.Listener, SuccessViewFragment.ListenerFragment2 {
+class MainActivity : AppCompatActivity(), FormViewFragment.Listener,
+    SuccessViewFragment.ListenerFragment2 {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
