@@ -4,7 +4,12 @@
   ~ https://linkedin.com/chrismerino
   -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppTheme.styleSpinner"
+    android:id="@+id/spinner_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:maxLines="1">
 
 </TextView>

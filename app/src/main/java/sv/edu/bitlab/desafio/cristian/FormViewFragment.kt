@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import sv.edu.bitlab.desafio.cristian.R
@@ -23,6 +25,8 @@ class FormViewFragment : Fragment() {
     // Declarando elementos de UI
     var botonEnviar: Button? = null
 
+    // TODO: Implementar el Adapter para el Spinner (Ocupar el Custom Layout! :D)
+
 
 
     var listener: Listener? = null
@@ -33,10 +37,12 @@ class FormViewFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_form_view, container, false)
 
-
         botonEnviar = view.findViewById(R.id.bntEnviar)
 
         botonEnviar?.setOnClickListener{ view ->
+
+
+            // TODO: Manejar el Spinner desde el onCreateView
 
 
             if (etNombre.text.isEmpty()
