@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorUIPrimaryWhite"
     android:id="@+id/fragmentSuccessView"
-    tools:context="sv.edu.bitlab.desafio.cristian.SuccessViewFragment">
+    tools:context="sv.edu.bitlab.desafio.cristian.CollectionViewFragment">
 
 
     <ImageView

@@ -7,16 +7,29 @@ package sv.edu.bitlab.desafio.cristian
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import sv.edu.bitlab.desafio.cristian.R
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class MainActivity : AppCompatActivity(), FormViewFragment.Listener,
-    SuccessViewFragment.ListenerFragment2 {
+    CollectionViewFragment.ListenerFragment2 {
+
+    private var mStorageRef: StorageReference? = null
+    private var fireStoreDatabase: FirebaseFirestore? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        // Inicializacion STORAGE / FireStore
+        mStorageRef = FirebaseStorage.getInstance().getReference()
+
+        // Inicializacion FIRESTORE
+        fireStoreDatabase = FirebaseFirestore.getInstance()
+
 
 
 
@@ -31,8 +44,8 @@ class MainActivity : AppCompatActivity(), FormViewFragment.Listener,
 
 
 
-    override fun callMyFragment() {
-        val showMyNewFragment = SuccessViewFragment()
+    override fun callCollectionFragment() {
+        val showMyNewFragment = CollectionViewFragment()
         val builder = supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container_main_activity, showMyNewFragment)
