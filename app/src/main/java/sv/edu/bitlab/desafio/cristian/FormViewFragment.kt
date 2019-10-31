@@ -24,20 +24,34 @@ import java.lang.Exception
 class FormViewFragment : Fragment() {
 
     // Declarando elementos de UI
+
+    var editTextNombre: EditText? = null
+    var editTextCorreoElectronico: EditText? = null
+    var editTextNumeroTelefonico: EditText? = null
+    var spinnerCuentanos: Spinner? = null
+    var imageAccount: String? = null
+
+
     var botonEnviar: Button? = null
     var textViewColeccion: TextView? = null
 
     var mStorageRef: StorageReference? = null
     var fireStoreDatabase: FirebaseFirestore? = null
-    var myDB: DocumentReference? = null
+
+    var myFirestoreDB = FirebaseFirestore.getInstance()
+
+    var accountName: String? = null
+    var accountEmail: String? = null
+    var accountPhone: String? = null
+    var accountFoundOutBy: String? = null
+    var accountImage: String? = null
 
 
 
     // TODO: Implementar el Adapter para el Spinner (Ocupar el Custom Layout! :D)
 
-
-
     var listener: Listener? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,32 +59,46 @@ class FormViewFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_form_view, container, false)
 
-        // TODO: Manejar el Spinner desde el onCreateView
 
         botonEnviar = view.findViewById(R.id.bntEnviar)
+
+        botonEnviar?.setOnClickListener{
+            view: View? ->
+        }
+
+
+        // TODO: Manejar el Spinner desde el onCreateView
+
         textViewColeccion = view.findViewById(R.id.textView_ver_coleccion)
 
-        val editTextNombre = view?.findViewById<EditText>(R.id.etNombre)
-        val editTextCorreo = view?.findViewById<EditText>(R.id.etCorreoElectronico)
-        val editTextNumero = view?.findViewById<EditText>(R.id.etNumeroTelefonico)
+        editTextNombre = view?.findViewById(R.id.etNombre)
+        // accountName = editTextNombre?.text.toString().trim()
+        accountName = "Chris"
 
-        val itemNombre = "TextoUno"
-        val itemCorreo = "TextoDos"
-        val itemNumero = "TextoTres"
+        editTextCorreoElectronico = view?.findViewById(R.id.etCorreoElectronico)
+        // accountEmail = editTextCorreoElectronico?.text.toString().trim()
+        accountEmail = "cris.merino@live.com"
 
-        botonEnviar?.setOnClickListener{ view -> myFireStorePrueba()
+        editTextNumeroTelefonico = view?.findViewById(R.id.etNumeroTelefonico)
+        // accountPhone = editTextNumeroTelefonico?.text.toString(). trim()
+        accountPhone = "12345678"
 
-            //mStorageRef = FirebaseStorage.getInstance().getReference()
-            //myDB = FirebaseFirestore.getInstance().document("accounts/")
+        spinnerCuentanos = view?.findViewById(R.id.spinner_Informacion)
+        accountFoundOutBy = "Soy un spinner quemado"
+
+        // imageAccount
+        accountImage = "Esto deberia ser una imagen..."
+
+        var dataclass = Account(accountName, accountEmail, accountPhone, accountFoundOutBy, accountImage)
 
 
 
 
+        botonEnviar?.setOnClickListener{ view ->
+            datosAFirestore(dataclass)
 
 
-
-
-/*            if (etNombre.text.isEmpty()
+            /*if (etNombre.text.isEmpty()
                 or (etCorreoElectronico.text.isEmpty())){
                 Toast.makeText(view.context, "Necesita completar la informacion", Toast.LENGTH_SHORT).show()
             } else {
@@ -90,36 +118,14 @@ class FormViewFragment : Fragment() {
 
     }
 
-    fun myFireStorePrueba() {
-
-
-
-        val itemNombre = "TextoUno"
-            //editTextNombre?.text.toString()
-        val itemCorreo = "TextoDos"
-            //editTextCorreo?.text.toString()
-        val itemNumero = "TextoTres"
-            //editTextNumero?.text.toString()
-
-        if (!itemNombre.isEmpty() && !itemCorreo.isEmpty() && !itemNumero.isEmpty()){
-            try {
-                val items = HashMap<String, Any>()
-                items.put("TextoUno", itemNombre)
-                items.put("TextoDos", itemCorreo)
-                items.put("TextoTres", itemNumero)
-                myDB?.collection("accounts/")?.document("accounts")?.set(items)?.addOnSuccessListener {
-                    void: Void -> Toast.makeText(view?.context, "Datos enviados a FireStore", Toast.LENGTH_SHORT).show()
-                }?.addOnFailureListener {
-                    exception: java.lang.Exception -> Toast.makeText(view?.context, exception.toString(), Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception){
-                Toast.makeText(view?.context, e.toString(), Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(view?.context, "Completar los campos", Toast.LENGTH_SHORT).show()
-        }
-
+    fun datosAFirestore(account: Account){
+        myFirestoreDB.collection("accounts")
+            .add(account)
     }
+
+
+
+
 
 
     interface Listener{
