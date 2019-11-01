@@ -6,50 +6,38 @@
 package sv.edu.bitlab.desafio.cristian
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.fragment_form_view.*
 import java.lang.ClassCastException
-import java.lang.Exception
 
 
 class FormViewFragment : Fragment() {
 
-    // Declarando elementos de UI
-
-    var editTextNombre: EditText? = null
-    var editTextCorreoElectronico: EditText? = null
-    var editTextNumeroTelefonico: EditText? = null
-    var spinnerCuentanos: Spinner? = null
-    var imageAccount: String? = null
-
-
-    var botonEnviar: Button? = null
-    var textViewColeccion: TextView? = null
-
-    var mStorageRef: StorageReference? = null
-    var fireStoreDatabase: FirebaseFirestore? = null
-
+    var mStorageRef: StorageReference = FirebaseStorage.getInstance().reference
     var myFirestoreDB = FirebaseFirestore.getInstance()
 
-    var accountName: String? = null
-    var accountEmail: String? = null
-    var accountPhone: String? = null
-    var accountFoundOutBy: String? = null
-    var accountImage: String? = null
+    // Declarando elementos de UI
 
+    var accountName: EditText? = null
+    var accountEmail: EditText? = null
+    var accountPhone: EditText? = null
+    var accountFoundBy: Spinner? = null
+    var accountImage: StorageReference = mStorageRef!!.child("accounts-image/avatar.jpg")
 
+    var textViewColeccion: TextView? = null
 
-    // TODO: Implementar el Adapter para el Spinner (Ocupar el Custom Layout! :D)
+    // Declarando Boton Enviar
 
+    var botonEnviar: Button? = null
     var listener: Listener? = null
 
 
@@ -59,80 +47,57 @@ class FormViewFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_form_view, container, false)
 
+        // Inicializar componentes de UI
+
+        accountName = view?.findViewById(R.id.etNombre)
+        accountEmail = view?.findViewById(R.id.etCorreoElectronico)
+        accountPhone = view?.findViewById(R.id.etNumeroTelefonico)
+        accountFoundBy = view?.findViewById(R.id.spinner_Informacion)
 
         botonEnviar = view.findViewById(R.id.bntEnviar)
-
-        botonEnviar?.setOnClickListener{
-            view: View? ->
-        }
-
-
-        // TODO: Manejar el Spinner desde el onCreateView
-
         textViewColeccion = view.findViewById(R.id.textView_ver_coleccion)
-
-        editTextNombre = view?.findViewById(R.id.etNombre)
-        // accountName = editTextNombre?.text.toString().trim()
-        accountName = "Chris"
-
-        editTextCorreoElectronico = view?.findViewById(R.id.etCorreoElectronico)
-        // accountEmail = editTextCorreoElectronico?.text.toString().trim()
-        accountEmail = "cris.merino@live.com"
-
-        editTextNumeroTelefonico = view?.findViewById(R.id.etNumeroTelefonico)
-        // accountPhone = editTextNumeroTelefonico?.text.toString(). trim()
-        accountPhone = "12345678"
-
-        spinnerCuentanos = view?.findViewById(R.id.spinner_Informacion)
-        accountFoundOutBy = "Soy un spinner quemado"
-
-        // imageAccount
-        accountImage = "Esto deberia ser una imagen..."
-
-        var dataclass = Account(accountName, accountEmail, accountPhone, accountFoundOutBy, accountImage)
-
-
-
-
-        botonEnviar?.setOnClickListener{ view ->
-            datosAFirestore(dataclass)
-
-
-            /*if (etNombre.text.isEmpty()
-                or (etCorreoElectronico.text.isEmpty())){
-                Toast.makeText(view.context, "Necesita completar la informacion", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(view.context, "La informacion ha sido enviada!", Toast.LENGTH_SHORT).show()
-                listener?.callCollectionFragment()
-            }*/
-
-        }
-
-        // SetOnClickListener del TextView Collecion
-
-        textViewColeccion?.setOnClickListener{
-            listener?.callCollectionFragment()
-        }
 
         return view
 
     }
 
-    fun datosAFirestore(account: Account){
-        myFirestoreDB.collection("accounts")
-            .add(account)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+
+        botonEnviar?.setOnClickListener {
+
+
+            if (accountName?.text!!.isEmpty() or accountEmail?.text!!.isEmpty()){
+                Toast.makeText(view.context, "Nombre y correo son obligatorios.", Toast.LENGTH_SHORT).show()
+            } else {
+
+                var imageURI : Uri = Uri.parse("android.resource://" + view?.context.packageName + "/drawable/avatar")
+                accountImage?.putFile(imageURI)!!.addOnSuccessListener{
+                    accountImage?.downloadUrl!!.addOnCompleteListener { task ->
+                        var imageURL = task.result
+                        val accountConInformation: Account = Account(
+                            accountName?.text.toString(),
+                            accountEmail?.text.toString(),
+                            accountPhone?.text.toString(),
+                            accountFoundBy?.selectedItem.toString(),
+                            imageURL.toString()
+                        )
+                        datosAFirestore(accountConInformation)
+                    }
+                }
+            }
+
+        }
+
+        textViewColeccion?.setOnClickListener{
+            listener?.callCollectionFragment()
+        }
+
     }
 
-
-
-
-
-
-    interface Listener{
-
-        fun callCollectionFragment()
-
-    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -143,6 +108,21 @@ class FormViewFragment : Fragment() {
             throw ClassCastException(context.toString() + "debes implementar la interface")
         }
 
+    }
+
+    fun datosAFirestore(account: Account){
+        myFirestoreDB.collection("accounts")
+            .add(account)
+            .addOnSuccessListener { documentReference ->
+                Log.i("TAG_FIREBASE: ", "${documentReference.id}")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("TAG_FIREBASE: ", exception.toString())
+            }
+    }
+
+    interface Listener{
+        fun callCollectionFragment()
     }
 
     companion object {
