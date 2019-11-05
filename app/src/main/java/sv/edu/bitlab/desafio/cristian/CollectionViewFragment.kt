@@ -48,7 +48,7 @@ class CollectionViewFragment : Fragment() {
     }
 
     fun callRecyclerView(){
-        var query:Query= collectRef.orderBy("accountName", Query.Direction.DESCENDING)
+        var query: Query= collectRef.orderBy("accountName", Query.Direction.DESCENDING)
         var options : FirestoreRecyclerOptions<Account> = FirestoreRecyclerOptions.Builder<Account>()
             .setQuery(query,Account::class.java)
             .build()

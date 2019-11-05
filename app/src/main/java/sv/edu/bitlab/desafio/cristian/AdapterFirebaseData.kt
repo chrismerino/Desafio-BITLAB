@@ -18,6 +18,7 @@ import kotlinx.android.extensions.LayoutContainer
 
 class AdapterFirebaseData(options: FirestoreRecyclerOptions<Account>) :
     FirestoreRecyclerAdapter<Account, AdapterFirebaseData.CollectionHolder>(options) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item, parent,false)
 
