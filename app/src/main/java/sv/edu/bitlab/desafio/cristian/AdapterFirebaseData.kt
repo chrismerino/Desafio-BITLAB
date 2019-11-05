@@ -36,8 +36,7 @@ class AdapterFirebaseData(options: FirestoreRecyclerOptions<Account>) :
         }
     }
 
-    inner class CollectionHolder( override val containerView: View) : RecyclerView.ViewHolder(containerView),
-        LayoutContainer {
+    inner class CollectionHolder( override val containerView: View) : RecyclerView.ViewHolder(containerView),LayoutContainer {
         var namens = containerView.findViewById<TextView>(R.id.textView_nombre_rv)
         var email=containerView.findViewById<TextView>(R.id.textView_email_rv)
         var phone =containerView.findViewById<TextView>(R.id.textView_telefono_rv)

@@ -102,7 +102,6 @@ class FormViewFragment : Fragment() {
         mRunnable = object : Runnable {
             override fun run() {
                 showSuccessFragment(true)
-                Toast.makeText(view.context, "Hey", Toast.LENGTH_SHORT).show()
                 mHandler?.postDelayed(this, 3000)
 
             }
@@ -129,7 +128,9 @@ class FormViewFragment : Fragment() {
                             accountFoundBy?.selectedItem.toString(),
                             imageURL.toString()
                         )
+                        callSuccessFragment()
                         datosAFirestore(accountConInformation)
+
                     }
                 }
             }

@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity(), FormViewFragment.Listener,
         fireStoreDatabase = FirebaseFirestore.getInstance()
 
 
-
-
         val mostrarFragment = FormViewFragment()
 
         val builder = supportFragmentManager

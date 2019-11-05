@@ -41,8 +41,6 @@ class CollectionViewFragment : Fragment() {
 
         callRecyclerView()
 
-
-
         // Inflate the layout for this fragment
         return view
     }
