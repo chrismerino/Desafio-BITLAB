@@ -18,6 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.ClassCastException
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+
+
 
 
 class FormViewFragment : Fragment() {
@@ -32,6 +36,8 @@ class FormViewFragment : Fragment() {
     var accountPhone: EditText? = null
     var accountFoundBy: Spinner? = null
     var accountImage: StorageReference = mStorageRef!!.child("accounts-image/avatar.jpg")
+
+    var spinner: Spinner? = null
 
     var textViewColeccion: TextView? = null
 
@@ -56,6 +62,16 @@ class FormViewFragment : Fragment() {
 
         botonEnviar = view.findViewById(R.id.bntEnviar)
         textViewColeccion = view.findViewById(R.id.textView_ver_coleccion)
+
+        spinner = view.findViewById(R.id.spinner_Informacion)
+
+        // Adapter para el Spinner
+
+        val adapter = ArrayAdapter.createFromResource(
+            view.context, R.array.spinner_bitlab_information_formview, R.layout.spinner_simple_item)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+        spinner?.adapter = adapter
+
 
         return view
 

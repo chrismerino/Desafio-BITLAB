@@ -4,12 +4,13 @@
   ~ https://linkedin.com/chrismerino
   -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<ripple android:color="@color/colorPurpuraBITLAB"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
             <solid android:color="@color/colorUIPrimaryWhite" />
             <corners android:radius="5dp" />
         </shape>
     </item>
-
-</selector>
+</ripple>

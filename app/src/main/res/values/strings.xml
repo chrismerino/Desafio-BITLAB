@@ -9,7 +9,7 @@
     <string name="tvCorreoElectronico">Correo electronico:</string>
     <string name="etCorreoElectronico">ejemplo@website.com</string>
     <string name="tvNumeroTelefonico">Numero telefonico</string>
-    <string name="etNumeroTelefonico">123456789</string>
+    <string name="etNumeroTelefonico">12345678</string>
     <string name="tvInformacion">Como te enteraste de BITLAB?</string>
     <string name="editTextInformacion">Cuentanos!</string>
     <string name="btnEnviar">Enviar</string>
