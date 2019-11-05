@@ -13,7 +13,7 @@
     <string name="tvInformacion">Como te enteraste de BITLAB?</string>
     <string name="editTextInformacion">Cuentanos!</string>
     <string name="btnEnviar">Enviar</string>
-    <string name="tv_descripcion_fg_success">Tus datos han sido enviados con éxito</string>
+    <string name="tv_descripcion_fg_success">Cargando...</string>
     <string name="string_textview_coleccion"><u>Ver coleccion</u></string>
 
 

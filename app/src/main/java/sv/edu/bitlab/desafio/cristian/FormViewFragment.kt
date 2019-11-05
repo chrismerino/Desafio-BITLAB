@@ -8,6 +8,8 @@ package sv.edu.bitlab.desafio.cristian
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,8 +28,13 @@ import android.widget.Spinner
 
 class FormViewFragment : Fragment() {
 
+    // Firebase references
+
     var mStorageRef: StorageReference = FirebaseStorage.getInstance().reference
     var myFirestoreDB = FirebaseFirestore.getInstance()
+
+    // Fragments and Activities
+    var successFragment: View? = null
 
     // Declarando elementos de UI
 
@@ -36,9 +43,7 @@ class FormViewFragment : Fragment() {
     var accountPhone: EditText? = null
     var accountFoundBy: Spinner? = null
     var accountImage: StorageReference = mStorageRef!!.child("accounts-image/avatar.jpg")
-
     var spinner: Spinner? = null
-
     var textViewColeccion: TextView? = null
 
     // Declarando Boton Enviar
@@ -46,12 +51,21 @@ class FormViewFragment : Fragment() {
     var botonEnviar: Button? = null
     var listener: Listener? = null
 
+    // Runnable y Handler para el Handling de successFragment
+    var mHandler: Handler? = null
+    var mRunnable : Runnable? = null
+
+    // Handler & Runnable SuccessView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_form_view, container, false)
+
+        // Inicializar Fragment SuccessView
+        successFragment = view?.findViewById(R.id.fragmentSuccessView)
 
         // Inicializar componentes de UI
 
@@ -65,6 +79,8 @@ class FormViewFragment : Fragment() {
 
         spinner = view.findViewById(R.id.spinner_Informacion)
 
+
+
         // Adapter para el Spinner
 
         val adapter = ArrayAdapter.createFromResource(
@@ -72,6 +88,7 @@ class FormViewFragment : Fragment() {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
         spinner?.adapter = adapter
 
+        // Fin adapter
 
         return view
 
@@ -79,6 +96,17 @@ class FormViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Handler y Runnable SuccessFragment
+        mHandler = Handler(Looper.getMainLooper())
+        mRunnable = object : Runnable {
+            override fun run() {
+                showSuccessFragment(true)
+                Toast.makeText(view.context, "Hey", Toast.LENGTH_SHORT).show()
+                mHandler?.postDelayed(this, 3000)
+
+            }
+        }
 
 
 
@@ -109,7 +137,11 @@ class FormViewFragment : Fragment() {
         }
 
         textViewColeccion?.setOnClickListener{
-            listener?.callCollectionFragment()
+            //callSuccessFragment()
+            //showSuccessFragment(true)
+            // listener?.callCollectionFragment()
+            callSuccessFragment()
+            //mHandler?.post(mRunnable)
         }
 
     }
@@ -135,6 +167,28 @@ class FormViewFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.e("TAG_FIREBASE: ", exception.toString())
             }
+    }
+
+    fun callSuccessFragment() {
+        showSuccessFragment(true)
+        val handler = Handler()
+        handler.postDelayed({listener?.callCollectionFragment()}, 3000)
+
+//        mRunnable = object : Runnable {
+//            override fun run() {
+//                mHandler = Handler(Looper.getMainLooper())
+//                mHandler?.postDelayed(this, 3000)
+//                showSuccessFragment(true)
+//                //listener?.callCollectionFragment()
+//            }
+//        }
+    }
+
+    fun showSuccessFragment(success: Boolean) {
+        val visibility: Int = if (success) View.VISIBLE
+        else View.GONE
+        successFragment?.visibility = visibility
+
     }
 
     interface Listener{
