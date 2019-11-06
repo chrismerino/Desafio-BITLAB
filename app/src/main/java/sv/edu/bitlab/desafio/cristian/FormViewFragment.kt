@@ -22,8 +22,7 @@ import com.google.firebase.storage.StorageReference
 import java.lang.ClassCastException
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-
-
+import sv.edu.bitlab.desafio.cristian.DataModel.Account
 
 
 class FormViewFragment : Fragment() {
@@ -121,13 +120,14 @@ class FormViewFragment : Fragment() {
                 accountImage?.putFile(imageURI)!!.addOnSuccessListener{
                     accountImage?.downloadUrl!!.addOnCompleteListener { task ->
                         var imageURL = task.result
-                        val accountConInformation: Account = Account(
-                            accountName?.text.toString(),
-                            accountEmail?.text.toString(),
-                            accountPhone?.text.toString(),
-                            accountFoundBy?.selectedItem.toString(),
-                            imageURL.toString()
-                        )
+                        val accountConInformation: Account =
+                            Account(
+                                accountName?.text.toString(),
+                                accountEmail?.text.toString(),
+                                accountPhone?.text.toString(),
+                                accountFoundBy?.selectedItem.toString(),
+                                imageURL.toString()
+                            )
                         callSuccessFragment()
                         datosAFirestore(accountConInformation)
 
@@ -138,11 +138,7 @@ class FormViewFragment : Fragment() {
         }
 
         textViewColeccion?.setOnClickListener{
-            //callSuccessFragment()
-            //showSuccessFragment(true)
-            // listener?.callCollectionFragment()
             callSuccessFragment()
-            //mHandler?.post(mRunnable)
         }
 
     }
@@ -175,14 +171,6 @@ class FormViewFragment : Fragment() {
         val handler = Handler()
         handler.postDelayed({listener?.callCollectionFragment()}, 3000)
 
-//        mRunnable = object : Runnable {
-//            override fun run() {
-//                mHandler = Handler(Looper.getMainLooper())
-//                mHandler?.postDelayed(this, 3000)
-//                showSuccessFragment(true)
-//                //listener?.callCollectionFragment()
-//            }
-//        }
     }
 
     fun showSuccessFragment(success: Boolean) {

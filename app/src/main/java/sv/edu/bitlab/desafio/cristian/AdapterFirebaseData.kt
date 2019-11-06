@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.extensions.LayoutContainer
+import sv.edu.bitlab.desafio.cristian.DataModel.Account
 
 class AdapterFirebaseData(options: FirestoreRecyclerOptions<Account>) :
     FirestoreRecyclerAdapter<Account, AdapterFirebaseData.CollectionHolder>(options) {
